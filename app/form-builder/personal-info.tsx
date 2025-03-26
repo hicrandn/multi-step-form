@@ -2,32 +2,38 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";  
-import { Input } from "@/components/ui/input";    
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";  
-import { personalInfoSchema } from "@/lib/validation";  
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { personalInfoSchema } from "@/lib/validation";
+import { z } from "zod";
 
+type PersonalInfoFormData = z.infer<typeof personalInfoSchema>;
 
-  export default function PersonalInfoPage({ onNext }: { onNext: () => void }) {
-    const form = useForm({
-      resolver: zodResolver(personalInfoSchema),
-      
-      defaultValues: {
-        fullName: "",  
-        email: "",     
-        phoneNumber: "", 
-      },
-    });
+interface PersonalInfoProps {
+  onStepSubmit: (data: PersonalInfoFormData) => void;
+  onBack: () => void;
+  isFirstStep: boolean;
+  isLastStep: boolean;
+}
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    onNext(); 
+export default function PersonalInfoPage({ onStepSubmit, isFirstStep }: PersonalInfoProps) {
+  const form = useForm<PersonalInfoFormData>({
+    resolver: zodResolver(personalInfoSchema),
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+    },
+  });
+
+  const onSubmit = (data: PersonalInfoFormData) => {
+    onStepSubmit(data);
   };
 
   return (
-    <Form {...form}>  
+    <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-       
         <FormField
           control={form.control}
           name="fullName"
@@ -35,14 +41,13 @@ import { personalInfoSchema } from "@/lib/validation";
             <FormItem>
               <FormLabel>Ad ve Soyad</FormLabel>
               <FormControl>
-                <Input placeholder="Ad ve Soyad" {...field} />  
+                <Input placeholder="Ad ve Soyad" {...field} />
               </FormControl>
-              <FormMessage /> 
+              <FormMessage />
             </FormItem>
           )}
         />
-        
-       
+
         <FormField
           control={form.control}
           name="email"
@@ -52,12 +57,11 @@ import { personalInfoSchema } from "@/lib/validation";
               <FormControl>
                 <Input type="email" placeholder="E-posta" {...field} />
               </FormControl>
-              <FormMessage /> 
+              <FormMessage />
             </FormItem>
           )}
         />
-        
-       
+
         <FormField
           control={form.control}
           name="phoneNumber"
@@ -67,17 +71,14 @@ import { personalInfoSchema } from "@/lib/validation";
               <FormControl>
                 <Input type="text" placeholder="Telefon Numarası" {...field} />
               </FormControl>
-              <FormMessage /> 
+              <FormMessage />
             </FormItem>
-
-            
           )}
-          
         />
-         <Button type="submit">Submit</Button>
 
-        
-       
+        <Button type="submit" className="w-full">
+          Next Step
+        </Button>
       </form>
     </Form>
   );

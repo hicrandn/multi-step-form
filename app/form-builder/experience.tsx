@@ -2,81 +2,98 @@
 
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { UseFormReturn, useForm } from "react-hook-form";
+import { Input } from "@/components/ui/input";
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { experienceSchema } from "@/lib/validation";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { experienceSchema } from "@/lib/validation";  
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
- 
 
-export default function ExperiencePage() {
-  const form = useForm({
-    resolver: zodResolver(experienceSchema)
+type ExperienceFormData = z.infer<typeof experienceSchema>;
+
+interface ExperienceProps {
+  onStepSubmit: (data: ExperienceFormData) => void;
+  onBack: () => void;
+  isFirstStep: boolean;
+  isLastStep: boolean;
+}
+
+export default function ExperiencePage({ onStepSubmit }: ExperienceProps) {
+  const form = useForm<ExperienceFormData>({
+    defaultValues: {
+      companyName: "",
+      role: "",
+      startDate: "",
+      endDate: "",
+    },
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (data: ExperienceFormData) => {
+    onStepSubmit(data);
   };
 
   return (
-    <Form {...form}>  
+    <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-       
         <FormField
           control={form.control}
           name="companyName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Ad ve Soyad</FormLabel>
+              <FormLabel>Şirket Adı</FormLabel>
               <FormControl>
-                <Input placeholder="Ad ve Soyad" {...field} />  
+                <Input placeholder="Şirket Adı" {...field} required />
               </FormControl>
-              <FormMessage /> 
+              <FormMessage />
             </FormItem>
           )}
         />
-        
-       
+
         <FormField
           control={form.control}
           name="role"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>E-posta</FormLabel>
+              <FormLabel>Pozisyon</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="E-posta" {...field} />
+                <Input placeholder="Örn: Yazılım Geliştirici" {...field} required />
               </FormControl>
-              <FormMessage /> 
+              <FormMessage />
             </FormItem>
           )}
         />
-        
-       
+
         <FormField
           control={form.control}
           name="startDate"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Telefon Numarası</FormLabel>
+              <FormLabel>Başlangıç Tarihi</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Telefon Numarası" {...field} />
+                <Input type="date" {...field} required />
               </FormControl>
-              <FormMessage /> 
+              <FormMessage />
             </FormItem>
           )}
         />
 
-        
-       
+        <FormField
+          control={form.control}
+          name="endDate"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Bitiş Tarihi</FormLabel>
+              <FormControl>
+                <Input type="date" {...field} required />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button type="submit" className="w-full">
+          Next Step
+        </Button>
       </form>
     </Form>
   );

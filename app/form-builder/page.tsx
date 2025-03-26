@@ -4,38 +4,66 @@ import React, { useState } from "react";
 import PersonalInfo from "./personal-info";
 import Education from "./education";
 import Experience from "./experience";
-
-
-
+import UploadDocs from "./upload-doc";
+import { Button } from "@/components/ui/button";
 
 const steps = ["personal-info", "education", "experience", "upload-docs"];
 
 export default function StepsPage() {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [formData, setFormData] = useState({
+    personalInfo: null,
+    education: null,
+    experience: null,
+    uploadDocs: null
+  });
 
-  const nextStep = () => {
-    if (currentStepIndex < steps.length - 1) {
-      setCurrentStepIndex((prev) => prev + 1);
+  const isLastStep = currentStepIndex === steps.length - 1;
+  const isFirstStep = currentStepIndex === 0;
+
+  const handleStepSubmit = (stepData: any) => {
+    const currentStep = steps[currentStepIndex];
+    setFormData(prev => ({
+      ...prev,
+      [currentStep]: stepData
+    }));
+
+    if (isLastStep) {
+      // Handle final form submission
+      console.log('Final form data:', {
+        ...formData,
+        [currentStep]: stepData
+      });
+      // Here you can send the data to your API
+      return;
     }
+
+    setCurrentStepIndex(prev => prev + 1);
   };
 
-  const prevStep = () => {
-    if (currentStepIndex > 0) {
-      setCurrentStepIndex((prev) => prev - 1);
+  const handleBack = () => {
+    if (!isFirstStep) {
+      setCurrentStepIndex(prev => prev - 1);
     }
   };
 
   const renderStep = () => {
+    const commonProps = {
+      onStepSubmit: handleStepSubmit,
+      onBack: handleBack,
+      isFirstStep,
+      isLastStep
+    };
+
     switch (steps[currentStepIndex]) {
       case "personal-info":
-        return <PersonalInfo onNext={function (): void {
-         
-        } } />;
+        return <PersonalInfo {...commonProps} />;
       case "education":
-        return <Education />;
+        return <Education {...commonProps} />;
       case "experience":
-        return <Experience />;
-      
+        return <Experience {...commonProps} />;
+      case "upload-docs":
+        return <UploadDocs {...commonProps} />;
       default:
         return null;
     }
@@ -48,22 +76,17 @@ export default function StepsPage() {
       </div>
       
       <div className="mb-4">{renderStep()}</div>
-      
-      <div className="flex justify-between">
-        <button 
-          onClick={prevStep} 
-          disabled={currentStepIndex === 0} 
-          className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+
+      <div className="flex justify-between gap-4 mt-6">
+        <Button
+          type="button"
+          variant="outline"
+          onClick={handleBack}
+          disabled={isFirstStep}
+          className="w-full"
         >
           Geri
-        </button>
-        <button 
-          onClick={nextStep} 
-          disabled={currentStepIndex === steps.length - 1} 
-          className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
-        >
-          İleri
-        </button>
+        </Button>
       </div>
     </div>
   );
