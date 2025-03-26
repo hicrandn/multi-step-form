@@ -1,11 +1,11 @@
-import Image from "next/image";
+import React from 'react'
 
-export default function Home() {
+const Home = () => {
   return (
-    
-       <div>
-        multi-step-form
-       </div>
-
-  );
+    <div>
+      hey sjdhbfhksd
+    </div>
+  )
 }
+
+export default Home
