@@ -39,9 +39,9 @@ export default function PersonalInfoPage({ onStepSubmit, isFirstStep }: Personal
           name="fullName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Ad ve Soyad</FormLabel>
+              <FormLabel>Full Name</FormLabel>
               <FormControl>
-                <Input placeholder="Ad ve Soyad" {...field} />
+                <Input placeholder="Full Name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -53,9 +53,9 @@ export default function PersonalInfoPage({ onStepSubmit, isFirstStep }: Personal
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>E-posta</FormLabel>
+              <FormLabel>E-mail</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="E-posta" {...field} />
+                <Input type="email" placeholder="E-mail" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -67,9 +67,9 @@ export default function PersonalInfoPage({ onStepSubmit, isFirstStep }: Personal
           name="phoneNumber"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Telefon Numarası</FormLabel>
+              <FormLabel>Phone Number</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Telefon Numarası" {...field} />
+                <Input type="text" placeholder="Phone Number" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -37,9 +37,9 @@ export default function EducationPage({ onStepSubmit }: EducationProps) {
           name="schoolName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Okul Adı</FormLabel>
+              <FormLabel>School Name</FormLabel>
               <FormControl>
-                <Input placeholder="Okul Adı" {...field} required />
+                <Input placeholder="School Name" {...field} required />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -51,9 +51,9 @@ export default function EducationPage({ onStepSubmit }: EducationProps) {
           name="degree"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Derece</FormLabel>
+              <FormLabel>Degree</FormLabel>
               <FormControl>
-                <Input placeholder="Örn: Lisans, Yüksek Lisans" {...field} required />
+                <Input placeholder="Ex:Bachelor's Degree" {...field} required />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -65,7 +65,7 @@ export default function EducationPage({ onStepSubmit }: EducationProps) {
           name="graduationYear"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Mezuniyet Yılı</FormLabel>
+              <FormLabel>Graduation Year</FormLabel>
               <FormControl>
                 <Input type="text" placeholder="YYYY" {...field} required />
               </FormControl>

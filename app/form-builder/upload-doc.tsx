@@ -1,22 +1,23 @@
 "use client";
 
-import { UseFormReturn, useForm } from "react-hook-form";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { uploadDocsSchema } from "@/lib/validation";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import SuccessMessage from "@/components/SuccessMessage"; 
 
 type UploadDocsFormData = z.infer<typeof uploadDocsSchema>;
 
 interface UploadDocsProps {
   onStepSubmit: (data: UploadDocsFormData) => void;
-  onBack: () => void;
-  isFirstStep: boolean;
   isLastStep: boolean;
 }
 
 export default function UploadDocsPage({ onStepSubmit, isLastStep }: UploadDocsProps) {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const form = useForm<UploadDocsFormData>({
     defaultValues: {
       resume: undefined,
@@ -25,7 +26,14 @@ export default function UploadDocsPage({ onStepSubmit, isLastStep }: UploadDocsP
 
   const onSubmit = (data: UploadDocsFormData) => {
     onStepSubmit(data);
+    if (isLastStep) {
+      setIsSubmitted(true); 
+    }
   };
+
+  if (isSubmitted) {
+    return <SuccessMessage />; 
+  }
 
   return (
     <Form {...form}>
@@ -35,7 +43,7 @@ export default function UploadDocsPage({ onStepSubmit, isLastStep }: UploadDocsP
           name="resume"
           render={({ field: { onChange, value, ...field } }) => (
             <FormItem>
-              <FormLabel>CV/Özgeçmiş</FormLabel>
+              <FormLabel>Resume</FormLabel>
               <FormControl>
                 <Input
                   type="file"

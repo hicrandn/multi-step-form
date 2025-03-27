@@ -29,12 +29,12 @@ export default function StepsPage() {
     }));
 
     if (isLastStep) {
-      // Handle final form submission
+      
       console.log('Final form data:', {
         ...formData,
         [currentStep]: stepData
       });
-      // Here you can send the data to your API
+      // API gondermece olar burda 
       return;
     }
 
@@ -72,7 +72,7 @@ export default function StepsPage() {
   return (
     <div className="max-w-lg mx-auto p-10 bg-white shadow-lg rounded-md">
       <div className="text-center mb-4">
-        <h2 className="text-xl font-semibold">Adım {currentStepIndex + 1} / {steps.length}</h2>
+        <h2 className="text-xl font-semibold">Step {currentStepIndex + 1} / {steps.length}</h2>
       </div>
       
       <div className="mb-4">{renderStep()}</div>
@@ -85,7 +85,7 @@ export default function StepsPage() {
           disabled={isFirstStep}
           className="w-full"
         >
-          Geri
+         Back
         </Button>
       </div>
     </div>

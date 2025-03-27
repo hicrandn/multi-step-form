@@ -40,9 +40,9 @@ export default function ExperiencePage({ onStepSubmit }: ExperienceProps) {
           name="companyName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Şirket Adı</FormLabel>
+              <FormLabel>Company Name</FormLabel>
               <FormControl>
-                <Input placeholder="Şirket Adı" {...field} required />
+                <Input placeholder="Company Name" {...field} required />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -54,9 +54,9 @@ export default function ExperiencePage({ onStepSubmit }: ExperienceProps) {
           name="role"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Pozisyon</FormLabel>
+              <FormLabel>Role</FormLabel>
               <FormControl>
-                <Input placeholder="Örn: Yazılım Geliştirici" {...field} required />
+                <Input placeholder="Ex: Software Developer" {...field} required />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -68,7 +68,7 @@ export default function ExperiencePage({ onStepSubmit }: ExperienceProps) {
           name="startDate"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Başlangıç Tarihi</FormLabel>
+              <FormLabel>Start Date</FormLabel>
               <FormControl>
                 <Input type="date" {...field} required />
               </FormControl>
@@ -82,7 +82,7 @@ export default function ExperiencePage({ onStepSubmit }: ExperienceProps) {
           name="endDate"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Bitiş Tarihi</FormLabel>
+              <FormLabel>End Date</FormLabel>
               <FormControl>
                 <Input type="date" {...field} required />
               </FormControl>
