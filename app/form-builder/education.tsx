@@ -6,18 +6,19 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "
 import { educationSchema } from "@/lib/validation";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import { Step } from "@/components/Stepper";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type EducationFormData = z.infer<typeof educationSchema>;
 
 interface EducationProps {
   onStepSubmit: (data: EducationFormData) => void;
   onBack: () => void;
-  isFirstStep: boolean;
-  isLastStep: boolean;
 }
 
 export default function EducationPage({ onStepSubmit }: EducationProps) {
   const form = useForm<EducationFormData>({
+    resolver: zodResolver(educationSchema),
     defaultValues: {
       schoolName: "",
       degree: "",
@@ -30,6 +31,7 @@ export default function EducationPage({ onStepSubmit }: EducationProps) {
   };
 
   return (
+    <div>
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
@@ -39,7 +41,7 @@ export default function EducationPage({ onStepSubmit }: EducationProps) {
             <FormItem>
               <FormLabel>School Name</FormLabel>
               <FormControl>
-                <Input placeholder="School Name" {...field} required />
+                <Input placeholder="School Name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -53,7 +55,7 @@ export default function EducationPage({ onStepSubmit }: EducationProps) {
             <FormItem>
               <FormLabel>Degree</FormLabel>
               <FormControl>
-                <Input placeholder="Ex:Bachelor's Degree" {...field} required />
+                <Input placeholder="Ex:Bachelor's Degree" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -67,7 +69,7 @@ export default function EducationPage({ onStepSubmit }: EducationProps) {
             <FormItem>
               <FormLabel>Graduation Year</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="YYYY" {...field} required />
+              <Input type="text" placeholder="Enter year" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -79,5 +81,6 @@ export default function EducationPage({ onStepSubmit }: EducationProps) {
         </Button>
       </form>
     </Form>
+    </div>
   );
 }

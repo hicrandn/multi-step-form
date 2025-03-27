@@ -7,17 +7,16 @@ import { Input } from "@/components/ui/input";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { personalInfoSchema } from "@/lib/validation";
 import { z } from "zod";
+import { Step } from "@/components/Stepper";
 
 type PersonalInfoFormData = z.infer<typeof personalInfoSchema>;
 
 interface PersonalInfoProps {
   onStepSubmit: (data: PersonalInfoFormData) => void;
   onBack: () => void;
-  isFirstStep: boolean;
-  isLastStep: boolean;
 }
 
-export default function PersonalInfoPage({ onStepSubmit, isFirstStep }: PersonalInfoProps) {
+export default function PersonalInfoPage({ onStepSubmit }: PersonalInfoProps) {
   const form = useForm<PersonalInfoFormData>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: {
@@ -32,6 +31,7 @@ export default function PersonalInfoPage({ onStepSubmit, isFirstStep }: Personal
   };
 
   return (
+    <div>
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
@@ -81,5 +81,6 @@ export default function PersonalInfoPage({ onStepSubmit, isFirstStep }: Personal
         </Button>
       </form>
     </Form>
+    </div>
   );
 }

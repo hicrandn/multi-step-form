@@ -39,7 +39,7 @@ export default function SuccessMessage() {
         transition={{ delay: 0.4 }}
         className="text-2xl font-bold text-gray-900"
       >
-        Başarıyla Tamamlandı!
+        Successfully Completed!
       </motion.h2>
       
       <motion.p
@@ -48,7 +48,7 @@ export default function SuccessMessage() {
         transition={{ delay: 0.6 }}
         className="text-gray-600"
       >
-        Form başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.
+        The form has been sent successfully. We will contact you as soon as possible.
       </motion.p>
     </motion.div>
   );

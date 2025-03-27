@@ -1,25 +1,25 @@
 import * as z from 'zod';
 
-
 export const personalInfoSchema = z.object({
-  fullName: z.string().min(3, "Ad ve Soyad en az 3 karakter olmalı.").max(50, "Ad ve Soyad en fazla 50 karakter olmalı."),
-  email: z.string().email("Geçerli bir e-posta adresi girin."),
-  phoneNumber: z.string().min(10, "Telefon numarası en az 10 haneli olmalı.").max(15, "Telefon numarası en fazla 15 haneli olmalı."),
+  fullName: z.string().min(3, "Full name must be at least 3 characters long.").max(50, "Full name can be at most 50 characters long."),
+  email: z.string().email("Please enter a valid email address."),
+  phoneNumber: z.string().min(10, "Phone number must be at least 10 digits long.").max(15, "Phone number can be at most 15 digits long."),
 });
 
 export const educationSchema = z.object({
-  schoolName: z.string().min(3, "Okul adı en az 3 karakter olmalı."),
-  degree: z.string().min(2, "Derece en az 2 karakter olmalı."),
-  graduationYear: z.string().regex(/^\d{4}$/, "Geçerli bir yıl girin.").length(4, "Geçerli bir yıl girin."),
+  schoolName: z.string().min(3, "School name must be at least 3 characters long."),
+  degree: z.string().min(2, "Degree must be at least 2 characters long."),
+  graduationYear: z.string().regex(/^\d{4}$/, "Please enter a valid year.").length(4, "Please enter a valid year."),
 });
 
 export const experienceSchema = z.object({
-  companyName: z.string().min(3, "Şirket adı en az 3 karakter olmalı."),
-  role: z.string().min(2, "Pozisyon adı en az 2 karakter olmalı."),
-  startDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih girin (YYYY-MM-DD)."),
-  endDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih girin (YYYY-MM-DD).").optional(),
+  companyName: z.string().min(3, "Company name must be at least 3 characters long."),
+  role: z.string().min(2, "Role must be at least 2 characters long."),
+  startDate: z.date({ required_error: "Start date is required." }),
+  endDate: z.date().optional(),
 });
 
+
 export const uploadDocsSchema = z.object({
-  resume: z.instanceof(File).refine(file => file.type === "application/pdf", "Sadece PDF dosyası yükleyebilirsiniz."),
+  resume: z.instanceof(File).refine(file => file.type === "application/pdf", "Only PDF files are allowed."),
 });

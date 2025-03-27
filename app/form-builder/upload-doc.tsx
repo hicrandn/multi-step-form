@@ -8,6 +8,7 @@ import { uploadDocsSchema } from "@/lib/validation";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import SuccessMessage from "@/components/SuccessMessage"; 
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type UploadDocsFormData = z.infer<typeof uploadDocsSchema>;
 
@@ -19,6 +20,8 @@ interface UploadDocsProps {
 export default function UploadDocsPage({ onStepSubmit, isLastStep }: UploadDocsProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const form = useForm<UploadDocsFormData>({
+    resolver: zodResolver(uploadDocsSchema),
+
     defaultValues: {
       resume: undefined,
     },
@@ -52,7 +55,7 @@ export default function UploadDocsPage({ onStepSubmit, isLastStep }: UploadDocsP
                     const file = e.target.files?.[0];
                     onChange(file);
                   }}
-                  required
+                  
                   {...field}
                 />
               </FormControl>

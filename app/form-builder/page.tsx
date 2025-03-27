@@ -7,7 +7,12 @@ import Experience from "./experience";
 import UploadDocs from "./upload-doc";
 import { Button } from "@/components/ui/button";
 
-const steps = ["personal-info", "education", "experience", "upload-docs"];
+const steps = [
+  { key: "personal-info", label: "Personal Information" },
+  { key: "education", label: "Education" },
+  { key: "experience", label: "Work Experience" },
+  { key: "upload-docs", label: "Upload Documents" }
+];
 
 export default function StepsPage() {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -22,19 +27,18 @@ export default function StepsPage() {
   const isFirstStep = currentStepIndex === 0;
 
   const handleStepSubmit = (stepData: any) => {
-    const currentStep = steps[currentStepIndex];
+    const currentStep = steps[currentStepIndex].key;
     setFormData(prev => ({
       ...prev,
       [currentStep]: stepData
     }));
 
     if (isLastStep) {
-      
       console.log('Final form data:', {
         ...formData,
         [currentStep]: stepData
       });
-      // API gondermece olar burda 
+      // API gönderme işlemi buraya eklenebilir
       return;
     }
 
@@ -55,7 +59,7 @@ export default function StepsPage() {
       isLastStep
     };
 
-    switch (steps[currentStepIndex]) {
+    switch (steps[currentStepIndex].key) {
       case "personal-info":
         return <PersonalInfo {...commonProps} />;
       case "education":
@@ -70,11 +74,19 @@ export default function StepsPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-10 bg-white shadow-lg rounded-md">
-      <div className="text-center mb-4">
-        <h2 className="text-xl font-semibold">Step {currentStepIndex + 1} / {steps.length}</h2>
+    <div className="max-w-lg mx-auto p-10 mt-10 bg-white shadow-lg rounded-md">
+      {/* Genel Başlık */}
+      <div className="text-center mb-6">
+        <h1 className="text-2xl font-bold text-gray-800">Job Application Form</h1>
       </div>
+
       
+      <div className="text-center mb-4">
+        <h2 className="text-xl font-semibold text-gray-700">
+          Step {currentStepIndex + 1}: {steps[currentStepIndex].label}
+        </h2>
+      </div>
+
       <div className="mb-4">{renderStep()}</div>
 
       <div className="flex justify-between gap-4 mt-6">
@@ -85,7 +97,7 @@ export default function StepsPage() {
           disabled={isFirstStep}
           className="w-full"
         >
-         Back
+          Back
         </Button>
       </div>
     </div>
