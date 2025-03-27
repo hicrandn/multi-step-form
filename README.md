@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Job Application Form with Multi-Step Flow
+This is a multi-step job application form built using React, Next.js 15, Zod, React Hook Form, Tailwind CSS, ShadCN, and DummyJSON API for handling form submissions. The project is implemented using TypeScript for type safety and scalability.
 
-## Getting Started
+Features
+Multi-step Form: The form is divided into multiple steps to capture different sections of the job application (e.g., Personal Info, Education, Work Experience, and Upload Documents).
 
-First, run the development server:
+Validation: Zod is used for schema validation, ensuring that the data submitted meets the required format.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Form Management: React Hook Form is used for efficient form management, including handling validation, errors, and data submission.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Type Safety: The project uses TypeScript to ensure type safety throughout the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Styling: Tailwind CSS and ShadCN are used for clean, responsive, and modern design.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+API Integration: The form data is submitted to the DummyJSON API on the final step using server-side actions for improved performance.
 
-## Learn More
+Tech Stack
+React: A JavaScript library for building user interfaces.
 
-To learn more about Next.js, take a look at the following resources:
+Next.js 15: A React framework that enables server-side rendering, static site generation, and routing.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Zod: A TypeScript-first schema declaration and validation library.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+React Hook Form: A library for managing form states in React with minimal re-renders.
 
-## Deploy on Vercel
+TypeScript: A statically typed superset of JavaScript that adds type safety and enhances development productivity.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Tailwind CSS: A utility-first CSS framework for creating custom designs.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ShadCN: A component library that integrates with Tailwind CSS for consistent and reusable UI components.
+
+DummyJSON: A fake REST API for testing and prototyping.
+
+Fill out the job application form by navigating through the following steps:
+
+Step 1: Personal Information
+
+Step 2: Education
+
+Step 3: Work Experience
+
+Step 4: Upload Documents
+
+After completing the last step, the form data will be sent to the DummyJSON API via a POST request, and you will receive a response with the submitted data.
