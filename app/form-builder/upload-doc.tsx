@@ -51,6 +51,7 @@ export default function UploadDocsPage({ onStepSubmit, isLastStep }: UploadDocsP
                 <Input
                   type="file"
                   accept=".pdf"
+                  lang="en"
                   onChange={(e) => {
                     const file = e.target.files?.[0];
                     onChange(file);
@@ -59,7 +60,7 @@ export default function UploadDocsPage({ onStepSubmit, isLastStep }: UploadDocsP
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              
             </FormItem>
           )}
         />
