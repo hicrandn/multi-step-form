@@ -1,4 +1,7 @@
-Job Application Form with Multi-Step Flow
+Job Application Form with Multi-Step 
+
+<img width="670" alt="image" src="https://github.com/user-attachments/assets/0baada65-d335-424c-9804-a5ed297792c8" />
+
 This is a multi-step job application form built using React, Next.js 15, Zod, React Hook Form, Tailwind CSS, ShadCN, and DummyJSON API for handling form submissions. The project is implemented using TypeScript for type safety and scalability.
 
 Features
