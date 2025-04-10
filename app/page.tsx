@@ -6,7 +6,7 @@ import Education from "./form-builder/education";
 import Experience from "./form-builder/experience";
 import UploadDocs from "./form-builder/upload-doc";
 import { Button } from "@/components/ui/button";
-import { submitApplication } from "@/actions/form"; 
+import { submitApplication } from "@/app/form-builder/submit-action"; 
 
 const steps = [
   { key: "personal-info", label: "Personal Information" },
